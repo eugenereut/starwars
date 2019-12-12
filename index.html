@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Poiret+One|Russo+One&display=swap" rel="stylesheet">
+<style>
+body {
+	margin: 0 auto;
+	text-align:center;	
+	background-color: black;
+}
+
+.star {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	background-color: white;
+}
+.logo {
+	margin-top: 10%;	
+	color: blue;
+}
+.logo-middle {
+	text-transform: uppercase;
+	margin-top: -1em;
+	margin-bottom: -1em;
+	font-size: 2em;
+	font-family: 'Russo One', sans-serif;
+	letter-spacing: 8px;
+	color: #ccc;
+}
+pre {font-size: 2.5em;}
+#countdown {color: #ccc; font-size: 2em; font-family: 'Poiret One', cursive;}
+</style>
+</head>
+<body>
+	<div class="logo">
+		<pre>
+   ______________    ____ 
+  / ___/_  __/   |  / __ \
+  \__ \ / / / /| | / /_/ /
+ ___/ // / / ___ |/ _, _/ 
+/____//_/ /_/  |_/_/ |_|  
+		</pre>
+		<div class="logo-middle">the rise of skywalker</div>
+		<pre>
+ _       _____    ____  _____
+| |     / /   |  / __ \/ ___/
+| | /| / / /| | / /_/ /\__ \ 
+| |/ |/ / ___ |/ _, _/___/ / 
+|__/|__/_/  |_/_/ |_|/____/  
+		</pre>
+	</div>
+	<p id="countdown"></p>
+<script>
+// Sets the number of stars we wish to display
+const numStars = 100;
+
+// For every star we want to display
+for (let i = 0; i < numStars; i++) {
+  let star = document.createElement("div");  
+  star.className = "star";
+  var xy = getRandomPosition();
+  star.style.top = xy[0] + 'px';
+  star.style.left = xy[1] + 'px';
+  document.body.append(star);
+}
+
+// Gets random x, y values based on the size of the container
+function getRandomPosition() {  
+  var y = window.innerWidth;
+  var x = window.innerHeight;
+  var randomX = Math.floor(Math.random()*x);
+  var randomY = Math.floor(Math.random()*y);
+  return [randomX,randomY];
+}
+</script>
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 19, 2019 17:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="countdown"
+  document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+</body>
+</html>
